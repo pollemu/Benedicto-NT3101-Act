@@ -118,12 +118,15 @@
             line-height: 1.6;
         }
 
-        button {
+        .btn {
+            display: block;
             width: 100%;
             padding: 12px 18px;
             font-family: inherit;
             font-size: 0.98rem;
             font-weight: 600;
+            text-align: center;
+            text-decoration: none;
             color: var(--red);
             background: var(--white);
             border: 1.5px solid var(--red);
@@ -132,13 +135,13 @@
             transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease;
         }
 
-        button:hover {
+        .btn:hover {
             background: var(--red);
             color: var(--white);
             transform: translateY(-1px);
         }
 
-        button:active {
+        .btn:active {
             transform: translateY(0);
         }
 
@@ -159,20 +162,20 @@
                 </svg>
             </div>
             <h1 id="welcome">Welcome!</h1>
-            <p>You are now logged in.</p>
+            <p id="sub">You are now logged in.</p>
         </div>
 
         <div class="card-body">
-            <span class="chip">Signed in</span>
+            <span class="chip" id="chip">Signed in</span>
 
             <div class="panel">
-                <h2>Protected page</h2>
-                <p>You can only see this page after logging in with a valid username and password. Opening it without a session will send you straight back to the login form.</p>
+                <h2 id="panel-title">Protected page</h2>
+                <p id="panel-text">You can only see this page after logging in with a valid username and password. Opening it without a session will send you straight back to the login form.</p>
             </div>
 
-            <button type="button" id="logout">Logout</button>
+            <a class="btn" id="action" href="login.html">Logout</a>
 
-            <p class="note">Logging out will clear your session on this browser.</p>
+            <p class="note" id="note">Logging out will clear your session on this browser.</p>
         </div>
     </div>
 
@@ -181,17 +184,31 @@
         $(document).ready(function () {
             var username = localStorage.getItem('webdev_session');
 
-            if (!username) {
-                window.location.replace('login.html');
-                return;
+            if (username) {
+                $('#welcome').text('Welcome, ' + username + '!');
+                $('#sub').text('You are now logged in.');
+                $('#chip').text('Signed in');
+                $('#panel-title').text('Protected page');
+                $('#panel-text').text('You can only see this page after logging in with a valid username and password. Opening it without a session will send you straight back to the login form.');
+                $('#action').text('Logout');
+                $('#note').text('Logging out will clear your session on this browser.');
+
+                $('#action').on('click', function (event) {
+                    event.preventDefault();
+                    localStorage.removeItem('webdev_session');
+                    window.location.replace('login.html');
+                });
+            } else {
+                $('#welcome').text('Welcome, Guest!');
+                $('#sub').text('You are browsing without logging in.');
+                $('#chip').text('Guest');
+                $('#panel-title').text('Login first');
+                $('#panel-text').text('Login with a valid username and password and this page will greet you by name instead.');
+                $('#action').text('Go to login');
+                $('#note').text('No session found in this browser.');
+
+                $('#action').attr('href', 'login.html');
             }
-
-            $('#welcome').text('Welcome, ' + username + '!');
-
-            $('#logout').click(function () {
-                localStorage.removeItem('webdev_session');
-                window.location.replace('login.html');
-            });
         });
     </script>
 </body>
