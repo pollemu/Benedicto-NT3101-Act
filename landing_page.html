@@ -33,8 +33,8 @@
             justify-content: center;
             padding: 24px;
             background:
-                radial-gradient(circle at 15% 15%, rgba(239, 68, 68, 0.16), transparent 45%),
-                radial-gradient(circle at 85% 90%, rgba(220, 38, 38, 0.14), transparent 45%),
+                radial-gradient(circle at 12% 12%, rgba(239, 68, 68, 0.15), transparent 45%),
+                radial-gradient(circle at 88% 88%, rgba(220, 38, 38, 0.13), transparent 45%),
                 #fff5f5;
         }
 
@@ -45,13 +45,25 @@
             border-radius: 18px;
             overflow: hidden;
             box-shadow: 0 22px 50px rgba(185, 28, 28, 0.18);
+            animation: fadeUp 0.45s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
         }
 
         .card-header {
             background: linear-gradient(135deg, var(--red) 0%, #ef4444 100%);
             color: var(--white);
             text-align: center;
-            padding: 32px 28px 28px;
+            padding: 30px 28px 28px;
         }
 
         .icon {
@@ -63,6 +75,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: beat 2.4s ease-in-out infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.06);
+            }
         }
 
         .card-header h1 {
@@ -150,6 +172,13 @@
             font-size: 0.78rem;
             color: #9ca3af;
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card,
+            .icon {
+                animation: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -162,18 +191,18 @@
                 </svg>
             </div>
             <h1 id="welcome">Welcome!</h1>
-            <p id="sub">You are now logged in.</p>
+            <p id="sub">Your account is ready.</p>
         </div>
 
         <div class="card-body">
-            <span class="chip" id="chip">Signed in</span>
+            <span class="chip" id="chip">Active</span>
 
             <div class="panel">
-                <h2 id="panel-title">Protected page</h2>
-                <p id="panel-text">You can only see this page after logging in with a valid username and password. Opening it without a session will send you straight back to the login form.</p>
+                <h2>You are signed in</h2>
+                <p>This page is the landing area of the activity. It loads straight from the repository and greets you with the username you used to log in.</p>
             </div>
 
-            <a class="btn" id="action" href="login.html">Logout</a>
+            <a class="btn" id="action" href="login.html">Login</a>
 
             <p class="note" id="note">Logging out will clear your session on this browser.</p>
         </div>
@@ -186,12 +215,9 @@
 
             if (username) {
                 $('#welcome').text('Welcome, ' + username + '!');
-                $('#sub').text('You are now logged in.');
+                $('#sub').text('You are logged in successfully.');
                 $('#chip').text('Signed in');
-                $('#panel-title').text('Protected page');
-                $('#panel-text').text('You can only see this page after logging in with a valid username and password. Opening it without a session will send you straight back to the login form.');
                 $('#action').text('Logout');
-                $('#note').text('Logging out will clear your session on this browser.');
 
                 $('#action').on('click', function (event) {
                     event.preventDefault();
@@ -199,15 +225,10 @@
                     window.location.replace('login.html');
                 });
             } else {
-                $('#welcome').text('Welcome, Guest!');
-                $('#sub').text('You are browsing without logging in.');
-                $('#chip').text('Guest');
-                $('#panel-title').text('Login first');
-                $('#panel-text').text('Login with a valid username and password and this page will greet you by name instead.');
-                $('#action').text('Go to login');
-                $('#note').text('No session found in this browser.');
-
-                $('#action').attr('href', 'login.html');
+                $('#welcome').text('Welcome!');
+                $('#sub').text('Your account is ready.');
+                $('#chip').text('Active');
+                $('#action').text('Login');
             }
         });
     </script>
