@@ -8,9 +8,9 @@ GitHub Pages.
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Login form (username + password) |
+| `login.html` | Login form (username + password) |
 | `register.html` | Registration form (name, email, username, password, confirm password) |
-| `landing.html` | Protected welcome page, only reachable after a successful login |
+| `landing_page.html` | Protected welcome page, only reachable after a successful login |
 
 ## Demo credentials
 
@@ -39,7 +39,7 @@ machine and resets if you clear site data.
 - Success shows a confirmation banner and clears the form
 
 **Landing**
-- If no session is present, the page immediately redirects to `index.html`
+- If no session is present, the page immediately redirects to `login.html`
 - Greets the user with `Welcome, [username]!`
 - Logout clears the session and returns to the login page
 
@@ -47,9 +47,9 @@ machine and resets if you clear site data.
 
 ```
 webdev-activity/
-├── index.html
+├── login.html
 ├── register.html
-├── landing.html
+├── landing_page.html
 └── assets/
     ├── css/style.css
     └── js/
@@ -61,7 +61,7 @@ webdev-activity/
 
 ## Run locally
 
-Open `index.html` directly in a browser, or serve the folder:
+Open `login.html` directly in a browser, or serve the folder:
 
 ```bash
 npx serve .
@@ -84,8 +84,8 @@ npx serve .
 4. The site is published at
    `https://<your-username>.github.io/webdev-activity/`.
 
-Because the navigation uses relative links (`index.html`, `register.html`,
-`landing.html`), the project works at a user site root or under a project
+Because the navigation uses relative links (`login.html`, `register.html`,
+`landing_page.html`), the project works at a user site root or under a project
 sub-path without further changes.
 
 ## Note on security

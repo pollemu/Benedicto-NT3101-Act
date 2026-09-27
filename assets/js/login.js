@@ -2,7 +2,7 @@
     'use strict';
 
     if (Auth.getSession()) {
-        window.location.replace('landing.html');
+        window.location.replace('landing_page.html');
         return;
     }
 
@@ -53,7 +53,7 @@
             Auth.showAlert('Login successful. Redirecting to your dashboard...', 'success');
 
             window.setTimeout(function () {
-                window.location.href = 'landing.html';
+                window.location.href = 'landing_page.html';
             }, 700);
 
             return false;

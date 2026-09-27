@@ -4,7 +4,7 @@
     var session = Auth.getSession();
 
     if (!session) {
-        window.location.replace('index.html');
+        window.location.replace('login.html');
         return;
     }
 
@@ -15,6 +15,6 @@
 
     $('#logout-btn').on('click', function () {
         Auth.endSession();
-        window.location.replace('index.html');
+        window.location.replace('login.html');
     });
 })(jQuery);

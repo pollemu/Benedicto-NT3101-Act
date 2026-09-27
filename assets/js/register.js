@@ -2,7 +2,7 @@
     'use strict';
 
     if (Auth.getSession()) {
-        window.location.replace('landing.html');
+        window.location.replace('landing_page.html');
         return;
     }
 
