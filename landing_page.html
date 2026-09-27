@@ -4,76 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing | WebDev Activity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+        :root {
+            --red: #dc2626;
+            --red-dark: #b91c1c;
+            --red-soft: #fef2f2;
+            --white: #ffffff;
+            --ink: #1f2937;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
         }
 
-        .box {
-            max-width: 380px;
-            margin: 0 auto;
-            background: #fff;
-            border: 1px solid #ccc;
-            padding: 25px;
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(239, 68, 68, 0.16), transparent 45%),
+                radial-gradient(circle at 85% 90%, rgba(220, 38, 38, 0.14), transparent 45%),
+                #fff5f5;
         }
 
-        h1 {
-            font-size: 22px;
-            color: #333;
-            margin: 0 0 5px;
+        .card {
+            width: 100%;
+            max-width: 430px;
+            background: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 22px 50px rgba(185, 28, 28, 0.18);
         }
 
-        p.sub {
-            color: #777;
-            font-size: 14px;
-            margin: 0 0 20px;
+        .card-header {
+            background: linear-gradient(135deg, var(--red) 0%, #ef4444 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 32px 28px 28px;
         }
 
-        .info {
-            border: 1px solid #ccc;
-            background: #fafafa;
-            padding: 12px;
+        .icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .card-header p {
+            font-size: 0.88rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card-body {
+            padding: 26px 28px 28px;
+            text-align: center;
+        }
+
+        .chip {
+            display: inline-block;
             margin-bottom: 20px;
-            font-size: 14px;
+            padding: 7px 15px;
+            background: var(--red-soft);
+            color: var(--red-dark);
+            border: 1px solid #fecaca;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .panel {
+            background: #fafafa;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--red);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        .panel h2 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .panel p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            background: #333;
-            color: #fff;
-            border: none;
-            font-size: 15px;
+            padding: 12px 18px;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--red);
+            background: var(--white);
+            border: 1.5px solid var(--red);
+            border-radius: 10px;
             cursor: pointer;
+            transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease;
         }
 
         button:hover {
-            background: #000;
+            background: var(--red);
+            color: var(--white);
+            transform: translateY(-1px);
         }
 
-        p.note {
-            margin-top: 15px;
-            font-size: 12px;
-            color: #777;
-            text-align: center;
+        button:active {
+            transform: translateY(0);
+        }
+
+        .note {
+            margin-top: 18px;
+            font-size: 0.78rem;
+            color: #9ca3af;
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1 id="welcome">Welcome!</h1>
-        <p class="sub">You are now logged in.</p>
-
-        <div class="info">
-            This page can only be seen after a successful login.
+    <div class="card">
+        <div class="card-header">
+            <div class="icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="M22 4 12 14.01l-3-3"></path>
+                </svg>
+            </div>
+            <h1 id="welcome">Welcome!</h1>
+            <p>You are now logged in.</p>
         </div>
 
-        <button type="button" id="logout">Logout</button>
+        <div class="card-body">
+            <span class="chip">Signed in</span>
 
-        <p class="note">Logging out will bring you back to the login page.</p>
+            <div class="panel">
+                <h2>Protected page</h2>
+                <p>You can only see this page after logging in with a valid username and password. Opening it without a session will send you straight back to the login form.</p>
+            </div>
+
+            <button type="button" id="logout">Logout</button>
+
+            <p class="note">Logging out will clear your session on this browser.</p>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
