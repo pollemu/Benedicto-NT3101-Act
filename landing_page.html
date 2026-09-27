@@ -4,14 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing | WebDev Activity</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: #1f2933;
+            background: #eef2f7;
+            line-height: 1.5;
+        }
+
+        .auth-body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 50%, #7c3aed 100%);
+        }
+
+        .card {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 32px 28px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            color: #1e3a8a;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.05s ease;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #1f2933;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .switch {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .session-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 22px;
+        }
+
+        .session-box p {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            font-size: 0.92rem;
+        }
+
+        .session-box p + p {
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .session-box .label {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .session-box .value {
+            color: #1e3a8a;
+            font-weight: 600;
+            word-break: break-word;
+            text-align: right;
+        }
+    </style>
 </head>
 <body class="auth-body">
     <main class="card">
         <h1 id="welcome">Welcome!</h1>
         <p class="subtitle">You are now logged in.</p>
 
-        <div id="session-box" class="session-box">
+        <div class="session-box">
             <p><span class="label">Username</span><span id="session-username" class="value">-</span></p>
             <p><span class="label">Name</span><span id="session-name" class="value">-</span></p>
             <p><span class="label">Email</span><span id="session-email" class="value">-</span></p>
@@ -22,7 +133,51 @@
     </main>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/landing.js"></script>
+    <script>
+        (function (window) {
+            'use strict';
+
+            var SESSION_KEY = 'webdev_session';
+
+            function getSession() {
+                try {
+                    return JSON.parse(window.localStorage.getItem(SESSION_KEY));
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            function endSession() {
+                window.localStorage.removeItem(SESSION_KEY);
+            }
+
+            window.Auth = {
+                getSession: getSession,
+                endSession: endSession
+            };
+        })(window);
+    </script>
+    <script>
+        (function ($) {
+            'use strict';
+
+            var session = Auth.getSession();
+
+            if (!session) {
+                window.location.replace('login.html');
+                return;
+            }
+
+            $('#welcome').text('Welcome, ' + session.username + '!');
+            $('#session-username').text(session.username);
+            $('#session-name').text(session.name || '-');
+            $('#session-email').text(session.email || '-');
+
+            $('#logout-btn').on('click', function () {
+                Auth.endSession();
+                window.location.replace('login.html');
+            });
+        })(jQuery);
+    </script>
 </body>
 </html>

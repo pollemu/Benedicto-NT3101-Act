@@ -4,7 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | WebDev Activity</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: #1f2933;
+            background: #eef2f7;
+            line-height: 1.5;
+        }
+
+        .auth-body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 50%, #7c3aed 100%);
+        }
+
+        .card {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 32px 28px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            color: #1e3a8a;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 11px 13px;
+            font-size: 0.95rem;
+            color: #1f2933;
+            background: #f9fafb;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+        }
+
+        input.input-error {
+            border-color: #dc2626;
+            background: #fef2f2;
+        }
+
+        input.input-error:focus {
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.18);
+        }
+
+        label.error {
+            display: block;
+            margin-top: 5px;
+            color: #dc2626;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.05s ease;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #1f2933;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .alert {
+            padding: 11px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            margin-bottom: 18px;
+            border: 1px solid transparent;
+        }
+
+        .alert-error {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: #b91c1c;
+        }
+
+        .alert-success {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+            color: #047857;
+        }
+
+        .hint {
+            margin-top: 16px;
+            padding: 10px 12px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            color: #475569;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .switch {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .switch a {
+            color: #4f46e5;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .switch a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body class="auth-body">
     <main class="card">
@@ -47,7 +223,193 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/register.js"></script>
+    <script>
+        (function (window) {
+            'use strict';
+
+            var USERS_KEY = 'webdev_users';
+            var SESSION_KEY = 'webdev_session';
+
+            var DEMO_USER = {
+                username: 'admin',
+                password: '12345',
+                name: 'Administrator',
+                email: 'admin@example.com'
+            };
+
+            function readUsers() {
+                try {
+                    return JSON.parse(window.localStorage.getItem(USERS_KEY)) || [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function writeUsers(users) {
+                window.localStorage.setItem(USERS_KEY, JSON.stringify(users));
+            }
+
+            function usernameTaken(username) {
+                var taken = DEMO_USER.username.toLowerCase() === username.toLowerCase();
+
+                return readUsers().some(function (user) {
+                    return user.username.toLowerCase() === username.toLowerCase();
+                }) || taken;
+            }
+
+            function registerUser(user) {
+                var users = readUsers();
+                users.push(user);
+                writeUsers(users);
+            }
+
+            function startSession(user) {
+                window.localStorage.setItem(SESSION_KEY, JSON.stringify({
+                    username: user.username,
+                    name: user.name,
+                    email: user.email,
+                    loginTime: new Date().toISOString()
+                }));
+            }
+
+            function getSession() {
+                try {
+                    return JSON.parse(window.localStorage.getItem(SESSION_KEY));
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            function showAlert(message, type) {
+                window.jQuery('#form-alert')
+                    .removeClass('alert-error alert-success')
+                    .addClass('alert-' + (type || 'error'))
+                    .text(message)
+                    .prop('hidden', false);
+            }
+
+            function clearAlert() {
+                window.jQuery('#form-alert').prop('hidden', true).text('');
+            }
+
+            window.Auth = {
+                DEMO_USER: DEMO_USER,
+                usernameTaken: usernameTaken,
+                registerUser: registerUser,
+                startSession: startSession,
+                getSession: getSession,
+                showAlert: showAlert,
+                clearAlert: clearAlert
+            };
+        })(window);
+    </script>
+    <script>
+        (function ($) {
+            'use strict';
+
+            if (Auth.getSession()) {
+                window.location.replace('landing_page.html');
+                return;
+            }
+
+            $.validator.addMethod('strongPassword', function (value) {
+                return /[A-Za-z]/.test(value) && /\d/.test(value);
+            }, 'Your password must contain at least one letter and one number.');
+
+            $.validator.addMethod('uniqueUsername', function (value) {
+                if (this.optional(value)) {
+                    return true;
+                }
+
+                return !Auth.usernameTaken($.trim(value));
+            }, 'That username is already taken. Please pick another one.');
+
+            $('#register-form').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    username: {
+                        required: true,
+                        minlength: 3,
+                        uniqueUsername: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5,
+                        strongPassword: true
+                    },
+                    confirm_password: {
+                        required: true,
+                        equalTo: '#password'
+                    }
+                },
+                messages: {
+                    name: {
+                        required: 'Please enter your full name.',
+                        minlength: 'Your name must be at least 2 characters long.'
+                    },
+                    email: {
+                        required: 'Please enter your email address.',
+                        email: 'Please enter a valid email address, e.g. juan@example.com'
+                    },
+                    username: {
+                        required: 'Please choose a username.',
+                        minlength: 'Your username must be at least 3 characters long.'
+                    },
+                    password: {
+                        required: 'Please create a password.',
+                        minlength: 'Your password must be at least 5 characters long.'
+                    },
+                    confirm_password: {
+                        required: 'Please re-enter your password.',
+                        equalTo: 'Passwords do not match. Please try again.'
+                    }
+                },
+                highlight: function (element) {
+                    $(element).addClass('input-error');
+                },
+                unhighlight: function (element) {
+                    $(element).removeClass('input-error');
+                },
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                },
+                submitHandler: function (form, event) {
+                    event.preventDefault();
+
+                    var password = $('#password').val();
+
+                    if ($('#confirm_password').val() !== password) {
+                        Auth.showAlert('Passwords do not match. Please try again.', 'error');
+                        return false;
+                    }
+
+                    Auth.registerUser({
+                        name: $.trim($('#name').val()),
+                        email: $.trim($('#email').val()),
+                        username: $.trim($('#username').val()),
+                        password: password
+                    });
+
+                    form.reset();
+
+                    Auth.showAlert('Registration successful! You can now log in with your new account.', 'success');
+
+                    return false;
+                }
+            });
+
+            $('#register-form').on('input change', 'input', function () {
+                Auth.clearAlert();
+                $(this).removeClass('input-error');
+            });
+        })(jQuery);
+    </script>
 </body>
 </html>
