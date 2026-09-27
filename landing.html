@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing | WebDev Activity</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="auth-body">
+    <main class="card">
+        <h1 id="welcome">Welcome!</h1>
+        <p class="subtitle">You are now logged in.</p>
+
+        <div id="session-box" class="session-box">
+            <p><span class="label">Username</span><span id="session-username" class="value">-</span></p>
+            <p><span class="label">Name</span><span id="session-name" class="value">-</span></p>
+            <p><span class="label">Email</span><span id="session-email" class="value">-</span></p>
+        </div>
+
+        <button type="button" id="logout-btn" class="btn btn-secondary btn-block">Logout</button>
+        <p class="switch">Protected page — opening it without logging in sends you back to the login form.</p>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/landing.js"></script>
+</body>
+</html>

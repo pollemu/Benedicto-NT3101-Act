@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | WebDev Activity</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="auth-body">
+    <main class="card">
+        <h1>Create your account</h1>
+        <p class="subtitle">It only takes a minute</p>
+
+        <div id="form-alert" class="alert" role="alert" hidden></div>
+
+        <form id="register-form" novalidate>
+            <div class="field">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="e.g. Juan Dela Cruz" autocomplete="name">
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="e.g. juan@example.com" autocomplete="email">
+            </div>
+
+            <div class="field">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username" autocomplete="username">
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="At least 5 characters" autocomplete="new-password">
+            </div>
+
+            <div class="field">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter your password" autocomplete="new-password">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+
+        <p class="switch">Already registered? <a href="index.html">Login instead</a></p>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/register.js"></script>
+</body>
+</html>
