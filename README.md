@@ -67,26 +67,39 @@ Open `login.html` directly in a browser, or serve the folder:
 npx serve .
 ```
 
+## Live site
+
+Repository: <https://github.com/pollemu/Benedicto-NT3101-Act>
+
+| Page | URL |
+| --- | --- |
+| Login | <https://pollemu.github.io/Benedicto-NT3101-Act/login.html> |
+| Register | <https://pollemu.github.io/Benedicto-NT3101-Act/register.html> |
+| Landing | <https://pollemu.github.io/Benedicto-NT3101-Act/landing_page.html> |
+
 ## Deploy to GitHub Pages
 
-1. Create a new repository named `webdev-activity` (public).
-2. Push this folder to it:
+The site is deployed straight from the `main` branch:
 
-   ```bash
-   git remote add origin https://github.com/<your-username>/webdev-activity.git
-   git add .
-   git commit -m "Login, registration and landing page with jQuery Validation"
-   git push -u origin main
-   ```
+1. In the repository go to **Settings → Pages → Build and deployment**.
+2. Set **Source** to *Deploy from a branch*, branch `main`, folder `/ (root)`.
+3. Save. GitHub publishes the site within a minute or two and keeps it in sync
+   with every push to `main`.
 
-3. In the repo go to **Settings → Pages → Build and deployment**, set
-   **Source** to *Deploy from a branch*, branch `main`, folder `/ (root)`, and save.
-4. The site is published at
-   `https://<your-username>.github.io/webdev-activity/`.
+To push changes from a fresh clone:
+
+```bash
+git clone https://github.com/pollemu/Benedicto-NT3101-Act.git
+cd Benedicto-NT3101-Act
+git add .
+git commit -m "Describe your change"
+git push
+```
 
 Because the navigation uses relative links (`login.html`, `register.html`,
 `landing_page.html`), the project works at a user site root or under a project
-sub-path without further changes.
+sub-path without further changes. There is no `index.html`, so the bare
+`.../Benedicto-NT3101-Act/` URL returns 404 — link the three pages directly.
 
 ## Note on security
 
