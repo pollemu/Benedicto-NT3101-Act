@@ -5,179 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing | WebDev Activity</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            color: #1f2933;
-            background: #eef2f7;
-            line-height: 1.5;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 40px 20px;
         }
 
-        .auth-body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            background: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 50%, #7c3aed 100%);
-        }
-
-        .card {
-            width: 100%;
-            max-width: 420px;
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 32px 28px;
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+        .box {
+            max-width: 380px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 25px;
         }
 
         h1 {
-            font-size: 1.6rem;
-            color: #1e3a8a;
-            margin-bottom: 4px;
+            font-size: 22px;
+            color: #333;
+            margin: 0 0 5px;
         }
 
-        .subtitle {
-            color: #6b7280;
-            font-size: 0.95rem;
+        p.sub {
+            color: #777;
+            font-size: 14px;
+            margin: 0 0 20px;
+        }
+
+        .info {
+            border: 1px solid #ccc;
+            background: #fafafa;
+            padding: 12px;
             margin-bottom: 20px;
+            font-size: 14px;
         }
 
-        .btn {
-            padding: 12px 18px;
-            font-size: 1rem;
-            font-weight: 600;
-            font-family: inherit;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.15s ease, transform 0.05s ease;
-        }
-
-        .btn-block {
-            display: block;
+        button {
             width: 100%;
-            margin-top: 8px;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
         }
 
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #1f2933;
+        button:hover {
+            background: #000;
         }
 
-        .btn-secondary:hover {
-            background: #cbd5e1;
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        .switch {
-            margin-top: 18px;
+        p.note {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #777;
             text-align: center;
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-
-        .session-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 22px;
-        }
-
-        .session-box p {
-            display: flex;
-            justify-content: space-between;
-            padding: 7px 0;
-            font-size: 0.92rem;
-        }
-
-        .session-box p + p {
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .session-box .label {
-            color: #64748b;
-            font-weight: 600;
-        }
-
-        .session-box .value {
-            color: #1e3a8a;
-            font-weight: 600;
-            word-break: break-word;
-            text-align: right;
         }
     </style>
 </head>
-<body class="auth-body">
-    <main class="card">
+<body>
+    <div class="box">
         <h1 id="welcome">Welcome!</h1>
-        <p class="subtitle">You are now logged in.</p>
+        <p class="sub">You are now logged in.</p>
 
-        <div class="session-box">
-            <p><span class="label">Username</span><span id="session-username" class="value">-</span></p>
-            <p><span class="label">Name</span><span id="session-name" class="value">-</span></p>
-            <p><span class="label">Email</span><span id="session-email" class="value">-</span></p>
+        <div class="info">
+            This page can only be seen after a successful login.
         </div>
 
-        <button type="button" id="logout-btn" class="btn btn-secondary btn-block">Logout</button>
-        <p class="switch">Protected page — opening it without logging in sends you back to the login form.</p>
-    </main>
+        <button type="button" id="logout">Logout</button>
+
+        <p class="note">Logging out will bring you back to the login page.</p>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        (function (window) {
-            'use strict';
+        $(document).ready(function () {
+            var username = localStorage.getItem('webdev_session');
 
-            var SESSION_KEY = 'webdev_session';
-
-            function getSession() {
-                try {
-                    return JSON.parse(window.localStorage.getItem(SESSION_KEY));
-                } catch (error) {
-                    return null;
-                }
-            }
-
-            function endSession() {
-                window.localStorage.removeItem(SESSION_KEY);
-            }
-
-            window.Auth = {
-                getSession: getSession,
-                endSession: endSession
-            };
-        })(window);
-    </script>
-    <script>
-        (function ($) {
-            'use strict';
-
-            var session = Auth.getSession();
-
-            if (!session) {
+            if (!username) {
                 window.location.replace('login.html');
                 return;
             }
 
-            $('#welcome').text('Welcome, ' + session.username + '!');
-            $('#session-username').text(session.username);
-            $('#session-name').text(session.name || '-');
-            $('#session-email').text(session.email || '-');
+            $('#welcome').text('Welcome, ' + username + '!');
 
-            $('#logout-btn').on('click', function () {
-                Auth.endSession();
+            $('#logout').click(function () {
+                localStorage.removeItem('webdev_session');
                 window.location.replace('login.html');
             });
-        })(jQuery);
+        });
     </script>
 </body>
 </html>
