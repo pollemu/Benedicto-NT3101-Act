@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,16 +33,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 74px 20px 30px;
+            padding: 24px;
             background:
-                radial-gradient(circle at 12% 12%, rgba(239, 68, 68, 0.15), transparent 45%),
-                radial-gradient(circle at 88% 88%, rgba(220, 38, 38, 0.13), transparent 45%),
+                radial-gradient(circle at 15% 15%, rgba(239, 68, 68, 0.16), transparent 45%),
+                radial-gradient(circle at 85% 90%, rgba(220, 38, 38, 0.14), transparent 45%),
                 #fff5f5;
         }
 
         .card {
             width: 100%;
-            max-width: 560px;
+            max-width: 430px;
             background: var(--white);
             border-radius: 18px;
             overflow: hidden;
@@ -67,13 +67,13 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 20px 26px;
+            padding: 22px 26px;
         }
 
         .icon {
-            width: 44px;
-            height: 44px;
-            flex: 0 0 44px;
+            width: 46px;
+            height: 46px;
+            flex: 0 0 46px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             display: flex;
@@ -82,7 +82,7 @@
         }
 
         .card-header h1 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 600;
             letter-spacing: 0.3px;
         }
@@ -90,44 +90,35 @@
         .card-header p {
             font-size: 0.8rem;
             opacity: 0.9;
+            margin-top: 2px;
         }
 
         .card-body {
-            padding: 22px 26px 24px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0 14px;
-        }
-
-        .full {
-            grid-column: 1 / -1;
+            padding: 26px 28px 28px;
         }
 
         .field {
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         label {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.83rem;
             font-weight: 600;
             color: #374151;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 10px 12px;
+            padding: 11px 13px;
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             color: var(--ink);
             background: #fafafa;
             border: 1.5px solid var(--line);
-            border-radius: 9px;
+            border-radius: 10px;
             transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
         }
 
@@ -140,7 +131,7 @@
             outline: none;
             background: var(--white);
             border-color: var(--red);
-            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.13);
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.14);
         }
 
         input.bad {
@@ -150,9 +141,9 @@
 
         label.error {
             display: block;
-            margin-top: 5px;
+            margin-top: 6px;
             color: var(--red);
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 500;
         }
 
@@ -163,15 +154,15 @@
 
         button {
             width: 100%;
-            margin-top: 4px;
-            padding: 11px 18px;
+            margin-top: 6px;
+            padding: 12px 18px;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             font-weight: 600;
             color: var(--white);
             background: linear-gradient(135deg, var(--red) 0%, #ef4444 100%);
             border: none;
-            border-radius: 9px;
+            border-radius: 10px;
             cursor: pointer;
             box-shadow: 0 8px 18px rgba(220, 38, 38, 0.3);
             transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
@@ -189,10 +180,10 @@
 
         .alert {
             display: none;
-            margin-bottom: 16px;
-            padding: 10px 13px;
-            border-radius: 9px;
-            font-size: 0.83rem;
+            margin-bottom: 18px;
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
             font-weight: 500;
         }
 
@@ -208,24 +199,23 @@
             background: var(--green-soft);
             color: var(--green);
             border: 1px solid #a7f3d0;
-            animation: pop 0.3s ease both;
         }
 
-        @keyframes pop {
-            from {
-                opacity: 0;
-                transform: scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: none;
-            }
+        .demo {
+            margin-top: 20px;
+            padding: 11px 14px;
+            background: var(--red-soft);
+            border: 1px dashed #fca5a5;
+            border-radius: 10px;
+            color: #7f1d1d;
+            font-size: 0.82rem;
+            text-align: center;
         }
 
         .foot {
-            margin-top: 14px;
+            margin-top: 18px;
             text-align: center;
-            font-size: 0.83rem;
+            font-size: 0.86rem;
             color: var(--muted);
         }
 
@@ -239,26 +229,8 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 520px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-height: 620px) {
-            body {
-                align-items: flex-start;
-                padding-top: 10px;
-            }
-
-            .card {
-                animation: none;
-            }
-        }
-
         @media (prefers-reduced-motion: reduce) {
-            .card,
-            .alert.success {
+            .card {
                 animation: none;
             }
         }
@@ -268,54 +240,35 @@
     <div class="card">
         <div class="card-header">
             <div class="icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M19 8v6"></path>
-                    <path d="M22 11h-6"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="10" width="16" height="10" rx="2"></rect>
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
                 </svg>
             </div>
             <div>
-                <h1>Register</h1>
-                <p>Please fill in the form</p>
+                <h1>Login</h1>
+                <p>Please login to continue</p>
             </div>
         </div>
 
         <div class="card-body">
             <div id="message" class="alert"></div>
 
-            <form id="register-form" novalidate>
-                <div class="grid">
-                    <div class="field">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name">
-                    </div>
-
-                    <div class="field">
-                        <label for="email">Email</label>
-                        <input type="text" id="email" name="email" placeholder="Email address">
-                    </div>
-
-                    <div class="field">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Choose a username">
-                    </div>
-
-                    <div class="field">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="At least 5 characters">
-                    </div>
-
-                    <div class="field full">
-                        <label for="confirm">Confirm Password</label>
-                        <input type="password" id="confirm" name="confirm" placeholder="Repeat your password">
-                    </div>
+            <form id="login-form" novalidate>
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username">
                 </div>
 
-                <button type="submit">Register</button>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                </div>
+
+                <button type="submit">Login</button>
             </form>
 
-            <p class="foot">Already have an account? <a href="login.html">Login instead</a></p>
+            <p class="foot">No account yet? <a href="register.php">Create one</a></p>
         </div>
     </div>
 
@@ -323,16 +276,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#register-form').validate({
+            $('#login-form').validate({
                 rules: {
-                    name: {
-                        required: true,
-                        minlength: 2
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
                     username: {
                         required: true,
                         minlength: 3
@@ -340,21 +285,9 @@
                     password: {
                         required: true,
                         minlength: 5
-                    },
-                    confirm: {
-                        required: true,
-                        equalTo: '#password'
                     }
                 },
                 messages: {
-                    name: {
-                        required: 'Please enter your name.',
-                        minlength: 'Name must be at least 2 characters.'
-                    },
-                    email: {
-                        required: 'Please enter your email.',
-                        email: 'Please enter a valid email address.'
-                    },
                     username: {
                         required: 'Please enter your username.',
                         minlength: 'Username must be at least 3 characters.'
@@ -362,10 +295,6 @@
                     password: {
                         required: 'Please enter your password.',
                         minlength: 'Password must be at least 5 characters.'
-                    },
-                    confirm: {
-                        required: 'Please repeat your password.',
-                        equalTo: 'Passwords do not match.'
                     }
                 },
                 highlight: function (element) {
@@ -374,36 +303,58 @@
                 unhighlight: function (element) {
                     $(element).removeClass('bad');
                 },
-                submitHandler: function (form) {
-                    var users = getUsers();
+                submitHandler: function () {
+                    var username = $.trim($('#username').val());
+                    var password = $('#password').val();
+                    var valid = checkLogin(username, password);
 
-                    users.push({
-                        name: $.trim($('#name').val()),
-                        email: $.trim($('#email').val()),
-                        username: $.trim($('#username').val()),
-                        password: $('#password').val()
-                    });
+                    if (valid === false) {
+                        $('#message')
+                            .removeClass('success')
+                            .addClass('error')
+                            .text('Wrong username or password. Please try again.');
+                        return false;
+                    }
 
-                    localStorage.setItem('webdev_users', JSON.stringify(users));
-
-                    form.reset();
+                    localStorage.setItem('webdev_session', username);
 
                     $('#message')
                         .removeClass('error')
                         .addClass('success')
-                        .text('Registered successfully. You can now login.');
+                        .text('Login successful. Opening your page...');
+
+                    setTimeout(function () {
+                        window.location.href = 'landing_page.php';
+                    }, 700);
 
                     return false;
                 }
             });
 
-            $('#register-form input').on('keyup', function () {
+            $('#login-form input').on('keyup', function () {
                 $('#message').removeClass('error success').text('');
             });
         });
 
         function getUsers() {
             return JSON.parse(localStorage.getItem('webdev_users') || '[]');
+        }
+
+        function checkLogin(username, password) {
+            var users = getUsers();
+
+            users.push({
+                username: 'admin',
+                password: '12345'
+            });
+
+            for (var i = 0; i < users.length; i++) {
+                if (users[i].username === username && users[i].password === password) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     </script>
 </body>

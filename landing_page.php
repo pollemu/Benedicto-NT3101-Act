@@ -509,7 +509,7 @@
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a class="brand" href="landing_page.html">
+            <a class="brand" href="landing_page.php">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2 3 7v10l9 5 9-5V7l-9-5zm0 2.3 6.8 3.8L12 11.9 5.2 8.1 12 4.3zM5 9.7l6 3.4v6.6l-6-3.3V9.7zm8 10V13l6-3.4v6.7l-6 3.4z"></path>
                 </svg>
@@ -518,8 +518,8 @@
             <div class="nav-links">
                 <a href="#trending">Trending</a>
                 <a href="#genres">Genres</a>
-                <a href="register.html">Register</a>
-                <a class="nav-cta" id="nav-cta" href="login.html">Login</a>
+                <a href="register.php">Register</a>
+                <a class="nav-cta" id="nav-cta" href="login.php">Login</a>
             </div>
         </div>
     </nav>
@@ -533,8 +533,8 @@
                 <h1 id="hero-title">Unlimited anime, zero waiting.</h1>
                 <p id="hero-sub">Stream thousands of series and movies in HD. New episodes land every week, ready to binge whenever you are.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-red" href="login.html">Start watching</a>
-                    <a class="btn btn-ghost" href="register.html">Create account</a>
+                    <a class="btn btn-red" href="login.php">Start watching</a>
+                    <a class="btn btn-ghost" href="register.php">Create account</a>
                 </div>
                 <div class="stats">
                     <div class="stat">
@@ -558,7 +558,7 @@
         <div class="wrap">
             <div class="section-head">
                 <h2>Trending now</h2>
-                <a href="register.html">See all titles</a>
+                <a href="register.php">See all titles</a>
             </div>
             <div class="cards">
                 <article class="show fade d1">
@@ -674,7 +674,7 @@
                 <h2>Start your free trial today</h2>
                 <p>No credit card needed. Cancel anytime.</p>
             </div>
-            <a class="btn btn-white" href="register.html">Register now</a>
+            <a class="btn btn-white" href="register.php">Register now</a>
         </div>
     </section>
 
@@ -698,7 +698,7 @@
                 $('#nav-cta').on('click', function (event) {
                     event.preventDefault();
                     localStorage.removeItem('webdev_session');
-                    window.location.replace('login.html');
+                    window.location.replace('login.php');
                 });
             }
         });
